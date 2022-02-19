@@ -84,12 +84,15 @@ class _HomeState extends State<Home> {
         Container(
           margin: EdgeInsets.only(left: width * .06),
           height: height * .3,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) =>
-                CardMovie(urlImage: urlImages[index], name: nameCars[index]),
-            separatorBuilder: (context, _) => SizedBox(width: 0),
-            itemCount: 5,
+          child: GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed('/moviedetail'),
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) =>
+                  CardMovie(urlImage: urlImages[index], name: nameCars[index]),
+              separatorBuilder: (context, _) => SizedBox(width: 0),
+              itemCount: 5,
+            ),
           ),
         ),
         Container(
