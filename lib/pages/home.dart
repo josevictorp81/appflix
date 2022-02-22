@@ -10,14 +10,20 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final urlImages = [
-    'https://cdn.autopapo.com.br/box/uploads/2017/05/04172943/01-koenigsegg-agera-xs-monterey-1-732x488.jpg',
-    'https://revistacarro.com.br/wp-content/uploads/2019/08/Buggatti-Cientodieci_2-1080x675.jpg',
-    'https://img.elo7.com.br/product/original/398FD4F/adesivo-de-parede-carros-esportivos-citroen.jpg',
-    'http://wishcars.xyz/wp-content/uploads/2021/04/Os-10-melhores-carros-esportivos-de-todos-os-tempos-1-1024x683.jpg',
-    'https://cdn.motor1.com/images/mgl/LLrxM/s1/veja-quais-foram-os-carros-esportivos-mais-vendidos-em-dezembro-de-2012-no-brasil.jpg'
+    'https://disneyplusbrasil.com.br/wp-content/uploads/2021/05/Vingadores-Originais-1024x576.jpg',
+    'https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2021/11/11/5584929.jpeg',
+    'https://rollingstone.uol.com.br/media/uploads/poster_duna_reproducao.jpg',
+    'https://cdn.pocket-lint.com/r/s/1200x/assets/images/147767-tv-feature-what-order-should-you-watch-all-the-star-wars-films-image1-1wdfjceytb.jpg',
+    'https://www.justwatch.com/images/backdrop/8952016/s640/transformers-3-o-lado-oculto-da-lua'
   ];
 
-  final nameCars = ['Agera', 'Cientodiece', 'Aventador', 'Corvett', 'Camaro'];
+  final nameMovies = [
+    'vingadores',
+    'fast and furious 9',
+    'Duna',
+    'star wars',
+    'transformers'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -84,15 +90,16 @@ class _HomeState extends State<Home> {
         Container(
           margin: EdgeInsets.only(left: width * .06),
           height: height * .3,
-          child: GestureDetector(
-            onTap: () => Navigator.of(context).pushNamed('/moviedetail'),
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) =>
-                  CardMovie(urlImage: urlImages[index], name: nameCars[index]),
-              separatorBuilder: (context, _) => SizedBox(width: 0),
-              itemCount: 5,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) => GestureDetector(
+              child: CardMovie(
+                  urlImage: urlImages[index], name: nameMovies[index]),
+              onTap: () => Navigator.of(context).pushNamed('/moviedetail',
+                  arguments: Movies(urlImages[index], nameMovies[index])),
             ),
+            separatorBuilder: (context, _) => SizedBox(width: 0),
+            itemCount: 5,
           ),
         ),
         Container(
@@ -101,7 +108,7 @@ class _HomeState extends State<Home> {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) =>
-                CardMovie(urlImage: urlImages[index], name: nameCars[index]),
+                CardMovie(urlImage: urlImages[index], name: nameMovies[index]),
             separatorBuilder: (context, _) => SizedBox(width: 0),
             itemCount: 5,
           ),
@@ -109,4 +116,11 @@ class _HomeState extends State<Home> {
       ],
     );
   }
+}
+
+class Movies {
+  final String image;
+  final String name;
+
+  Movies(this.image, this.name);
 }
