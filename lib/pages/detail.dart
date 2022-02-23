@@ -47,7 +47,9 @@ class _MovieDetailState extends State<MovieDetail> {
                     width: width,
                     height: height * .5,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15)),
                       color: Color.fromRGBO(255, 255, 255, 0.1),
                     ),
                   ),
