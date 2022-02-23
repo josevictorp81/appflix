@@ -32,52 +32,71 @@ class _HomeState extends State<Home> {
     return Column(
       children: [
         Container(
-          width: width * .8,
-          height: height * .3,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
-          child: Stack(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      'https://www.10wallpaper.com/wallpaper/1366x768/1804/2018_Avengers_Infinity_War_4K_Film_1366x768.jpg',
+          width: width,
+          height: height * .1,
+          child: Center(
+            child: Text(
+              'Movies',
+              style: TextStyle(fontSize: 30, color: Colors.white),
+            ),
+          ),
+        ),
+        GestureDetector(
+          onTap: () => Navigator.of(context).pushNamed(
+            '/moviedetail',
+            arguments: Movies(
+                'https://www.10wallpaper.com/wallpaper/1366x768/1804/2018_Avengers_Infinity_War_4K_Film_1366x768.jpg',
+                'Vingadores'),
+          ),
+          child: Container(
+            width: width * .8,
+            height: height * .3,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+            child: Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        'https://www.10wallpaper.com/wallpaper/1366x768/1804/2018_Avengers_Infinity_War_4K_Film_1366x768.jpg',
+                      ),
+                      fit: BoxFit.cover,
                     ),
-                    fit: BoxFit.cover,
                   ),
                 ),
-              ),
-              Container(
-                decoration: BoxDecoration(
+                Container(
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: Colors.blue.withOpacity(0.3)),
-              ),
-              Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                width: width * .8,
-                height: height * .3,
-                margin: EdgeInsets.only(top: width * .4, left: width * .05),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Vingadores: Guerra Infinita',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      'Marvel Studios',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
+                    color: Color.fromRGBO(255, 255, 255, 0.2),
+                  ),
                 ),
-              ),
-            ],
+                Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  width: width * .8,
+                  height: height * .3,
+                  margin: EdgeInsets.only(top: width * .4, left: width * .05),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Vingadores: Guerra Infinita',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Text(
+                        'Marvel Studios',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         Container(
-          margin: EdgeInsets.only(left: width * .1, top: 20),
+          margin: EdgeInsets.only(left: width * .1, top: 20, bottom: 10),
           child: Row(
             children: [
               Text(
@@ -100,6 +119,17 @@ class _HomeState extends State<Home> {
             ),
             separatorBuilder: (context, _) => SizedBox(width: 0),
             itemCount: 5,
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(left: width * .1, bottom: 10),
+          child: Row(
+            children: [
+              Text(
+                'Popular',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              )
+            ],
           ),
         ),
         Container(
