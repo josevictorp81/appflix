@@ -23,11 +23,11 @@ class _HomePageState extends State<HomePage> {
     // final _pageOptions = [];
     return Scaffold(
       backgroundColor: const Color(0xff111820),
-      appBar: AppBar(
-        backgroundColor: const Color(0xff111820),
-        title: Text('App'),
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: const Color(0xff111820),
+      //   title: Text('App'),
+      //   centerTitle: true,
+      // ),
       body: Center(
         child: SingleChildScrollView(
           child: SafeArea(
@@ -41,21 +41,21 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: const Color(0xff111820),
         dotIndicatorColor: const Color(0xff111820),
         unselectedItemColor: Colors.grey,
-        enableFloatingNavBar: false,
+        // enableFloatingNavBar: false,
         onTap: _handleIndexChanged,
         items: [
           DotNavigationBarItem(
             icon: Icon(Icons.home_outlined),
           ),
           DotNavigationBarItem(
-            icon: Icon(Icons.favorite_outline),
-          ),
-          DotNavigationBarItem(
             icon: Icon(Icons.search_outlined),
           ),
           DotNavigationBarItem(
-            icon: Icon(Icons.person_outline),
+            icon: Icon(Icons.favorite_outline),
           ),
+          // DotNavigationBarItem(
+          //   icon: Icon(Icons.person_outline),
+          // ),
         ],
       ),
     );
