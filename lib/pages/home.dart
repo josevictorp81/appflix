@@ -1,4 +1,5 @@
 import 'package:appflix/components/card_movie.dart';
+import 'package:appflix/components/stack.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -74,57 +75,11 @@ class _HomeState extends State<Home> {
                       '/moviedetail',
                       arguments: Movies(urlImage, name),
                     ),
-                    child: Stack(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 12),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                urlImage,
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 12),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Color.fromRGBO(255, 255, 255, 0.2),
-                          ),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15)),
-                          width: width * .8,
-                          height: height * .3,
-                          margin: EdgeInsets.only(
-                              top: width * .4, left: width * .05),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                name,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              Text(
-                                'Studios XXX',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(
-                              top: height * .27, left: width * .17),
-                          child: AnimatedSmoothIndicator(
-                            activeIndex: activeIndex,
-                            count: urlImages.length,
-                          ),
-                        ),
-                      ],
+                    child: CustomStack(
+                      urlImage: urlImage,
+                      name: name,
+                      width: width,
+                      height: height,
                     ),
                   );
                 },
@@ -192,12 +147,4 @@ class Movies {
   final String name;
 
   Movies(this.image, this.name);
-}
-
-Widget buildImage(String urlImage, int index) {
-  return Container(
-    margin: EdgeInsets.symmetric(horizontal: 12),
-    color: Colors.grey,
-    child: Image.network(urlImage),
-  );
 }
