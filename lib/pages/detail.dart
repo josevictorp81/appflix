@@ -1,4 +1,4 @@
-import 'package:appflix/pages/home.dart';
+import 'package:appflix/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class MovieDetail extends StatefulWidget {

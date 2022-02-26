@@ -1,5 +1,5 @@
 import 'package:appflix/pages/detail.dart';
-import 'package:appflix/pages/home_page.dart';
+import 'package:appflix/pages/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
