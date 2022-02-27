@@ -1,8 +1,12 @@
 import 'package:appflix/components/card_movie.dart';
+import 'package:appflix/components/custom_list_view.dart';
 import 'package:appflix/components/stack.dart';
+import 'package:appflix/components/title_list.dart';
+import 'package:appflix/models/movie.dart';
+import 'package:appflix/repository/movie_repository.dart';
+import 'package:appflix/repository/resource.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,8 +16,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int activeIndex = 0;
-
   final urlImages = [
     'https://disneyplusbrasil.com.br/wp-content/uploads/2021/05/Vingadores-Originais-1024x576.jpg',
     'https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2021/11/11/5584929.jpeg',
@@ -38,6 +40,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
+    Resource resource = Resource('https://api.themoviedb.org/3', {});
+    MovieRepository movies = MovieRepository(resource);
+    MovieRepository moviesTR = MovieRepository(resource);
+
     return Column(
       children: [
         Container(
@@ -60,11 +67,6 @@ class _HomeState extends State<Home> {
                   autoPlayInterval: Duration(seconds: 5),
                   autoPlayAnimationDuration: Duration(seconds: 2),
                   enlargeCenterPage: true,
-                  // onPageChanged: (index, reason) {
-                  //   setState(() {
-                  //     activeIndex = index;
-                  //   });
-                  // },
                 ),
                 itemCount: urlImages.length,
                 itemBuilder: (context, index, realIndex) {
@@ -73,7 +75,7 @@ class _HomeState extends State<Home> {
                   return GestureDetector(
                     onTap: () => Navigator.of(context).pushNamed(
                       '/moviedetail',
-                      arguments: Movies(urlImage, name),
+                      arguments: movies,
                     ),
                     child: CustomStack(
                       urlImage: urlImage,
@@ -87,64 +89,25 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(left: width * .1, top: 50, bottom: 10),
-          child: Row(
-            children: [
-              Text(
-                'Popular',
-                style: TextStyle(color: Colors.white, fontSize: 18),
-              )
-            ],
-          ),
+        TitleList(width: width, text: 'Popular', top: 50),
+        CustomListView(
+          width: width,
+          height: height,
+          future: movies.getAll(1, '/movie/popular'),
         ),
-        Container(
-          margin: EdgeInsets.only(left: width * .06),
-          height: height * .3,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) => GestureDetector(
-              child: CardMovie(
-                  urlImage: urlImages[index], name: nameMovies[index]),
-              onTap: () => Navigator.of(context).pushNamed(
-                '/moviedetail',
-                arguments: Movies(urlImages[index], nameMovies[index]),
-              ),
-            ),
-            separatorBuilder: (context, _) => SizedBox(width: 0),
-            itemCount: 6,
-          ),
+        TitleList(width: width, text: 'Top Rated'),
+        CustomListView(
+          width: width,
+          height: height,
+          future: moviesTR.getAll(1, '/movie/top_rated'),
         ),
-        Container(
-          margin: EdgeInsets.only(left: width * .1, bottom: 10),
-          child: Row(
-            children: [
-              Text(
-                'Popular',
-                style: TextStyle(color: Colors.white, fontSize: 18),
-              )
-            ],
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(left: width * .06),
-          height: height * .3,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) =>
-                CardMovie(urlImage: urlImages[index], name: nameMovies[index]),
-            separatorBuilder: (context, _) => SizedBox(width: 0),
-            itemCount: 6,
-          ),
+        TitleList(width: width, text: 'Em breve'),
+        CustomListView(
+          width: width,
+          height: height,
+          future: movies.getAll(1, '/movie/upcoming'),
         ),
       ],
     );
   }
-}
-
-class Movies {
-  final String image;
-  final String name;
-
-  Movies(this.image, this.name);
 }
