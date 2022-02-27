@@ -9,10 +9,11 @@ class MovieRepository {
     _client = r.dio;
   }
 
-  Future<List<Movie>> getAll() async {
+  Future<List<Movie>> getAll(int page) async {
     var params = {
       'language': 'pt-br',
-      'api_key': 'de0279ac33da1f3ef47fa098401b0a99'
+      'api_key': 'de0279ac33da1f3ef47fa098401b0a99',
+      'page': page,
     };
     try {
       final Response response =
