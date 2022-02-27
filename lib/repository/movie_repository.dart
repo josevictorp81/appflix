@@ -9,7 +9,7 @@ class MovieRepository {
     _client = r.dio;
   }
 
-  Future<List<Movie>> getAll(int page) async {
+  Future<List<Movie>> getAll(int page, String endpoint) async {
     var params = {
       'language': 'pt-br',
       'api_key': 'de0279ac33da1f3ef47fa098401b0a99',
@@ -17,7 +17,7 @@ class MovieRepository {
     };
     try {
       final Response response =
-          await _client.get('/movie/popular', queryParameters: params);
+          await _client.get(endpoint, queryParameters: params);
       if (response.statusCode == 200) {
         return Movie.jsonToList(response.data['results']);
       }
