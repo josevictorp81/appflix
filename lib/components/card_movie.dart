@@ -18,12 +18,15 @@ class CardMovie extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             image: DecorationImage(
-              image: NetworkImage(urlImage),
+              image: NetworkImage('https://image.tmdb.org/t/p/w780/$urlImage'),
               fit: BoxFit.cover,
             ),
           ),
         ),
-        Text(name, style: TextStyle(color: Colors.white, fontSize: 18)),
+        Text(
+          name,
+          style: TextStyle(color: Colors.white, fontSize: 12),
+        ),
       ],
     );
   }
