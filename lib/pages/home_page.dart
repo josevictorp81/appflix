@@ -16,26 +16,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final urlImages = [
-    'https://disneyplusbrasil.com.br/wp-content/uploads/2021/05/Vingadores-Originais-1024x576.jpg',
-    'https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2021/11/11/5584929.jpeg',
-    'https://rollingstone.uol.com.br/media/uploads/poster_duna_reproducao.jpg',
-    'https://cdn.pocket-lint.com/r/s/1200x/assets/images/147767-tv-feature-what-order-should-you-watch-all-the-star-wars-films-image1-1wdfjceytb.jpg',
-    'https://www.justwatch.com/images/backdrop/8952016/s640/transformers-3-o-lado-oculto-da-lua',
-    'https://assets.vogue.in/photos/5d7224d50ce95e0008696c55/master/pass/Joker.jpg',
-    'https://www.10wallpaper.com/wallpaper/1366x768/1804/2018_Avengers_Infinity_War_4K_Film_1366x768.jpg',
-  ];
-
-  final nameMovies = [
-    'vingadores',
-    'fast and furious 9',
-    'Duna',
-    'star wars',
-    'transformers',
-    'Joker',
-    'Guerra Infinita',
-  ];
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -43,7 +23,6 @@ class _HomeState extends State<Home> {
 
     Resource resource = Resource('https://api.themoviedb.org/3', {});
     MovieRepository movies = MovieRepository(resource);
-    MovieRepository moviesTR = MovieRepository(resource);
 
     return Column(
       children: [
@@ -57,39 +36,13 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        Container(
-          child: Column(
-            children: [
-              CarouselSlider.builder(
-                options: CarouselOptions(
-                  height: height * .3,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 5),
-                  autoPlayAnimationDuration: Duration(seconds: 2),
-                  enlargeCenterPage: true,
-                ),
-                itemCount: urlImages.length,
-                itemBuilder: (context, index, realIndex) {
-                  final urlImage = urlImages[index];
-                  final name = nameMovies[index];
-                  return GestureDetector(
-                    onTap: () => Navigator.of(context).pushNamed(
-                      '/moviedetail',
-                      arguments: movies,
-                    ),
-                    child: CustomStack(
-                      urlImage: urlImage,
-                      name: name,
-                      width: width,
-                      height: height,
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
+        TitleList(width: width, text: 'Em Exibição'),
+        CustomListView(
+          width: width,
+          height: height,
+          future: movies.getAll(1, '/movie/now_playing'),
         ),
-        TitleList(width: width, text: 'Popular', top: 50),
+        TitleList(width: width, text: 'Popular'),
         CustomListView(
           width: width,
           height: height,
@@ -99,13 +52,37 @@ class _HomeState extends State<Home> {
         CustomListView(
           width: width,
           height: height,
-          future: moviesTR.getAll(1, '/movie/top_rated'),
+          future: movies.getAll(1, '/movie/top_rated'),
         ),
         TitleList(width: width, text: 'Em breve'),
         CustomListView(
           width: width,
           height: height,
           future: movies.getAll(1, '/movie/upcoming'),
+        ),
+        TitleList(width: width, text: 'Popular 2'),
+        CustomListView(
+          width: width,
+          height: height,
+          future: movies.getAll(2, '/movie/popular'),
+        ),
+        TitleList(width: width, text: 'Popular 3'),
+        CustomListView(
+          width: width,
+          height: height,
+          future: movies.getAll(3, '/movie/popular'),
+        ),
+        TitleList(width: width, text: 'Popular 4'),
+        CustomListView(
+          width: width,
+          height: height,
+          future: movies.getAll(4, '/movie/popular'),
+        ),
+        TitleList(width: width, text: 'Popular 5'),
+        CustomListView(
+          width: width,
+          height: height,
+          future: movies.getAll(5, '/movie/popular'),
         ),
       ],
     );
