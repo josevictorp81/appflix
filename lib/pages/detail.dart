@@ -1,5 +1,7 @@
 import 'package:appflix/models/movie.dart';
 import 'package:appflix/pages/home_page.dart';
+import 'package:appflix/repository/movie_repository.dart';
+import 'package:appflix/repository/resource.dart';
 import 'package:flutter/material.dart';
 
 class MovieDetail extends StatefulWidget {
@@ -15,6 +17,7 @@ class _MovieDetailState extends State<MovieDetail> {
     final args = ModalRoute.of(context)!.settings.arguments as Movie;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    int length = args.overview.length;
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -22,8 +25,9 @@ class _MovieDetailState extends State<MovieDetail> {
         child: Container(
           color: const Color(0xff111820),
           width: width,
-          height: height,
+          // height: height,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 children: [
@@ -64,34 +68,53 @@ class _MovieDetailState extends State<MovieDetail> {
                   ),
                 ],
               ),
-              Container(
-                width: width,
-                height: height * .5,
-                margin: EdgeInsets.only(left: 20, right: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(padding: EdgeInsets.only(top: 20)),
-                    Text(
-                      args.title,
-                      style: TextStyle(color: Colors.white, fontSize: 25),
-                    ),
-                    Padding(padding: EdgeInsets.only(top: 10)),
-                    Text(
-                      args.overview,
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Padding(padding: EdgeInsets.only(top: 10)),
-                    Text(
-                      'Gênero: ${args.genreIds}',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Padding(padding: EdgeInsets.only(top: 10)),
-                    Text(
-                      'Média votos: ${args.voteAverage}',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                child: SizedBox(
+                  width: width,
+                  height: length > 965 ? height * 0.7 : height * .5,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(padding: EdgeInsets.only(top: 20)),
+                      Text(
+                        args.title,
+                        style: TextStyle(color: Colors.white, fontSize: 25),
+                      ),
+                      Padding(padding: EdgeInsets.only(top: 10)),
+                      Text(
+                        args.overview,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Padding(padding: EdgeInsets.only(top: 10)),
+                      Row(
+                        children: [
+                          Text(
+                            'Gênero: ',
+                            style: TextStyle(color: Colors.blue[800]),
+                          ),
+                          Text(
+                            '${args.genreIds}',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                      Padding(padding: EdgeInsets.only(top: 10)),
+                      Row(
+                        children: [
+                          Text(
+                            'Média de votos: ',
+                            style: TextStyle(color: Colors.blue[800]),
+                          ),
+                          Text(
+                            '${args.voteAverage}',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
