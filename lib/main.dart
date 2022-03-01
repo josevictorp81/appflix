@@ -1,5 +1,7 @@
 import 'package:appflix/pages/detail.dart';
 import 'package:appflix/pages/home.dart';
+import 'package:appflix/pages/movies_list.dart';
+import 'package:appflix/pages/series_list.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,8 +21,10 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePage(),
-        '/moviedetail': (context) => MovieDetail(),
+        '/': (context) => const HomePage(),
+        '/moviedetail': (context) => const MovieDetail(),
+        '/movielist': (context) => const MoviesList(),
+        '/serieslist': (context) => const SeriesList(),
       },
     );
   }
