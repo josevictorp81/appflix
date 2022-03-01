@@ -1,7 +1,5 @@
 import 'package:appflix/models/movie.dart';
-import 'package:appflix/pages/home_page.dart';
-import 'package:appflix/repository/movie_repository.dart';
-import 'package:appflix/repository/resource.dart';
+import 'package:appflix/utils/list_genres.dart';
 import 'package:flutter/material.dart';
 
 class MovieDetail extends StatefulWidget {
@@ -25,7 +23,6 @@ class _MovieDetailState extends State<MovieDetail> {
         child: Container(
           color: const Color(0xff111820),
           width: width,
-          // height: height,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -95,7 +92,7 @@ class _MovieDetailState extends State<MovieDetail> {
                             style: TextStyle(color: Colors.blue[800]),
                           ),
                           Text(
-                            '${args.genreIds}',
+                            '${Genres().names(args.genreIds)}',
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
