@@ -1,4 +1,4 @@
-class GenresMovies {
+class Genres {
   var genres = [
     {'id': 28, 'name': "Ação"},
     {'id': 12, 'name': "Aventura"},

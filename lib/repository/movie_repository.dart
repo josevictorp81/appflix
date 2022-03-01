@@ -1,6 +1,7 @@
 import 'package:appflix/models/movie.dart';
 import 'package:appflix/repository/resource.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MovieRepository {
   late final Dio _client;
@@ -12,7 +13,7 @@ class MovieRepository {
   Future<List<Movie>> getAll(int page, String endpoint) async {
     var params = {
       'language': 'pt-br',
-      'api_key': 'de0279ac33da1f3ef47fa098401b0a99',
+      'api_key': dotenv.env['API_KEY'],
       'page': page,
     };
     try {
@@ -31,7 +32,7 @@ class MovieRepository {
       int page, String endpoint, String movie) async {
     var params = {
       'language': 'pt-br',
-      'api_key': 'de0279ac33da1f3ef47fa098401b0a99',
+      'api_key': dotenv.env['API_KEY'],
       'page': page,
       'query': movie,
     };

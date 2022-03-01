@@ -15,7 +15,7 @@ class NavBar extends StatelessWidget {
       },
       child: Text(
         text,
-        style: const TextStyle(fontSize: 20, color: Colors.white),
+        style: const TextStyle(fontSize: 18, color: Colors.white),
       ),
     );
   }

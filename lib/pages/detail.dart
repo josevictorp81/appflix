@@ -32,8 +32,9 @@ class _MovieDetailState extends State<MovieDetail> {
                     height: height * .5,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(15),
-                          bottomRight: Radius.circular(15)),
+                        bottomLeft: Radius.circular(15),
+                        bottomRight: Radius.circular(15),
+                      ),
                       image: DecorationImage(
                         image: NetworkImage(
                           'https://image.tmdb.org/t/p/w780/${args.posterPath}',

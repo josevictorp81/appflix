@@ -6,6 +6,7 @@ import 'package:appflix/repository/movie_repository.dart';
 import 'package:appflix/repository/resource.dart';
 import 'package:appflix/repository/serie_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _HomeState extends State<Home> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    Resource resource = Resource('https://api.themoviedb.org/3', {});
+    Resource resource = Resource(dotenv.env['BASE_URL'] as String, {});
     MovieRepository movies = MovieRepository(resource);
     SerieRepository series = SerieRepository(resource);
 
@@ -31,12 +32,22 @@ class _HomeState extends State<Home> {
           height: height * .1,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              NavBar(pathName: '/movielist', text: 'Filmes'),
-              NavBar(pathName: '/serieslist', text: 'Séries'),
-              Text(
-                'My List',
-                style: TextStyle(fontSize: 15, color: Colors.white),
+            children: [
+              GestureDetector(
+                onTap: () => Navigator.of(context).pushNamed('/searchr'),
+                child: const Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+              ),
+              const NavBar(pathName: '/movielist', text: 'Filmes'),
+              const NavBar(pathName: '/serieslist', text: 'Séries'),
+              GestureDetector(
+                onTap: () {},
+                child: const Text(
+                  'My List',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
               ),
             ],
           ),
