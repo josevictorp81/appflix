@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        TitleList(width: width, text: 'Em Exibição'),
+        TitleList(width: width, text: 'Now playing'),
         CustomListView(
           width: width,
           height: height,
@@ -88,3 +88,45 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
+// Column(
+//             children: [
+//               CarouselSlider.builder(
+//                 options: CarouselOptions(
+//                   height: height * .3,
+//                   autoPlay: true,
+//                   autoPlayInterval: Duration(seconds: 5),
+//                   autoPlayAnimationDuration: Duration(seconds: 2),
+//                   enlargeCenterPage: true,
+//                 ),
+//                 itemCount: urlImages.length,
+//                 itemBuilder: (context, index, realIndex) {
+//                   final urlImage = urlImages[index];
+//                   final name = nameMovies[index];
+//                   return GestureDetector(
+//                     onTap: () => Navigator.of(context).pushNamed(
+//                       '/moviedetail',
+//                       arguments: movies,
+//                     ),
+//                     child: CustomStack(
+//                       urlImage: urlImage,
+//                       name: name,
+//                       width: width,
+//                       height: height,
+//                     ),
+//                   );
+//                 },
+//               ),
+//             ],
+//           ),
+// ...snapshot.data!.map(
+//                         (map) => GestureDetector(
+//                           child: CardMovie(
+//                               urlImage: map.posterPath, name: map.title),
+//                           onTap: () => Navigator.of(context).pushNamed(
+//                             '/moviedetail',
+//                             arguments: Movie(map.posterPath, map.overview,
+//                                 map.title, map.genreIds, map.voteAverage),
+//                           ),
+//                         ),
+//                       ),

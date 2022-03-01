@@ -1,4 +1,5 @@
 import 'package:appflix/pages/home_page.dart';
+import 'package:appflix/pages/search.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // final _pageOptions = [];
+    final _pageOptions = [Home(), SearchPage()];
     return Scaffold(
       backgroundColor: const Color(0xff111820),
       // appBar: AppBar(
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: SingleChildScrollView(
           child: SafeArea(
-            child: Home(),
+            child: _pageOptions[_selectedIndex],
           ),
         ),
       ),
