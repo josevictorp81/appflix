@@ -4,14 +4,14 @@ import 'package:appflix/repository/resource.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class Search extends StatefulWidget {
+  const Search({Key? key}) : super(key: key);
 
   @override
-  _SearchPageState createState() => _SearchPageState();
+  _SearchState createState() => _SearchState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -19,9 +19,12 @@ class _SearchPageState extends State<SearchPage> {
     final _value = TextEditingController();
     final _formKey = GlobalKey<FormState>();
 
+    Resource resource = Resource('https://api.themoviedb.org/3', {});
+    MovieRepository m = MovieRepository(resource);
+
     return SafeArea(
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+        margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
         width: width,
         height: height,
         child: Column(
@@ -32,17 +35,17 @@ class _SearchPageState extends State<SearchPage> {
                 children: [
                   TextFormField(
                     controller: _value,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       suffixIcon: GestureDetector(
-                        onTap: () async {},
-                        child: Icon(
+                        onTap: () {},
+                        child: const Icon(
                           Icons.search,
                           color: Colors.white,
                         ),
                       ),
                       labelText: 'Filme',
-                      labelStyle: TextStyle(
+                      labelStyle: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,
                       ),

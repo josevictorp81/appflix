@@ -9,30 +9,29 @@ class CardMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 150,
-      child: Column(
-        children: [
-          Container(
-            width: 140,
-            height: 160,
-            margin: EdgeInsets.only(left: 10, right: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              image: DecorationImage(
-                image:
-                    NetworkImage('https://image.tmdb.org/t/p/w780/$urlImage'),
-                fit: BoxFit.cover,
-              ),
+    return Column(
+      children: [
+        Container(
+          width: 140,
+          height: 160,
+          margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            image: DecorationImage(
+              image: NetworkImage('https://image.tmdb.org/t/p/w780/$urlImage'),
+              fit: BoxFit.cover,
             ),
           ),
-          Text(
+        ),
+        SizedBox(
+          width: 150,
+          child: Text(
             name,
-            style: TextStyle(color: Colors.white, fontSize: 12),
+            style: const TextStyle(color: Colors.white, fontSize: 13),
             textAlign: TextAlign.center,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

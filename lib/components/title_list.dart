@@ -17,7 +17,7 @@ class TitleList extends StatelessWidget {
         children: [
           Text(
             text,
-            style: TextStyle(color: Colors.white, fontSize: 18),
+            style: const TextStyle(color: Colors.white, fontSize: 18),
           )
         ],
       ),

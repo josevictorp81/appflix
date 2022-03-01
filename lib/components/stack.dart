@@ -19,7 +19,7 @@ class CustomStack extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 12),
+          margin: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             image: DecorationImage(
@@ -31,10 +31,10 @@ class CustomStack extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 12),
+          margin: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Color.fromRGBO(255, 255, 255, 0.2),
+            color: const Color.fromRGBO(255, 255, 255, 0.2),
           ),
         ),
         Container(
@@ -47,9 +47,9 @@ class CustomStack extends StatelessWidget {
             children: [
               Text(
                 name,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
-              Text(
+              const Text(
                 'Studios XXX',
                 style: TextStyle(color: Colors.white),
               ),
