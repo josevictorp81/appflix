@@ -1,6 +1,7 @@
 import 'package:appflix/components/card_movie.dart';
 import 'package:appflix/models/movie.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class CustomListViewMovie extends StatelessWidget {
   const CustomListViewMovie(
@@ -24,6 +25,7 @@ class CustomListViewMovie extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data != null) {
+              EasyLoading.dismiss();
               return ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
@@ -42,6 +44,7 @@ class CustomListViewMovie extends StatelessWidget {
               );
             }
           }
+          EasyLoading.show();
           return const SizedBox();
         },
       ),
