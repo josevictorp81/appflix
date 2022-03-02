@@ -57,6 +57,11 @@ class _SeriesListState extends State<SeriesList> {
                   height: height,
                   future: series.getAll(1, '/tv/on_the_air'),
                 ),
+                CustomListViewSerie(
+                  width: width,
+                  height: height,
+                  future: series.getAll(3, '/tv/on_the_air'),
+                ),
                 TitleList(width: width, text: 'Populares'),
                 CustomListViewSerie(
                   width: width,
@@ -69,31 +74,23 @@ class _SeriesListState extends State<SeriesList> {
                   height: height,
                   future: series.getAll(1, '/tv/top_rated'),
                 ),
-                TitleList(width: width, text: 'Em breve'),
-                CustomListViewSerie(
-                  width: width,
-                  height: height,
-                  future: series.getAll(3, '/tv/on_the_air'),
-                ),
                 TitleList(width: width, text: 'Em exibição'),
                 CustomListViewSerie(
                   width: width,
                   height: height,
                   future: series.getAll(1, '/tv/airing_today'),
                 ),
-                TitleList(width: width, text: 'Popular 3'),
                 CustomListViewSerie(
                   width: width,
                   height: height,
                   future: series.getAll(2, '/tv/popular'),
                 ),
-                TitleList(width: width, text: 'Popular 4'),
+                TitleList(width: width, text: 'Recentes'),
                 CustomListViewSerie(
                   width: width,
                   height: height,
                   future: series.getAll(4, '/tv/popular'),
                 ),
-                TitleList(width: width, text: 'Popular 5'),
                 CustomListViewSerie(
                   width: width,
                   height: height,
